@@ -1,22 +1,79 @@
-# Compiled class file
-*.class
+/.project
+/.settings
+*/*.class
+/*/*.classpath
+/*/*.project
+/*/target
+/*/.settings
+*.DS_Store
+*.metadata
+/bin/
+/target/*
+/.classpath
+/.settings/
+/.project
+/.project
+/.settings
+*/*.class
+/*/*.classpath
+/*/*.project
+*/*.iml
+/*.iml
+.idea/
+*/*.DS_Store
+*/disconf/*
+*.iml
 
-# Log file
-*.log
+.gradle
+/build/
+/out/
+!gradle/wrapper/gradle-wrapper.jar
 
-# BlueJ files
-*.ctxt
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
 
-# Package Files #
-*.jar
-*.war
-*.ear
-*.zip
-*.tar.gz
-*.rar
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+*/.gradle
+*/build/
+*/out/
+*/!gradle/wrapper/gradle-wrapper.jar
+
+### STS ###
+*/.apt_generated
+*/.classpath
+*/.factorypath
+*/.project
+*/.settings
+*/.springBeans
+
+### IntelliJ IDEA ###
+*/.idea
+*/*.iws
+*/*.iml
+*/*.ipr
+
+### NetBeans ###
+*/nbproject/private/
+*/build/
+*/nbbuild/
+*/dist/
+*/nbdist/
+*/.nb-gradle/
