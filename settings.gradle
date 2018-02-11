@@ -1,0 +1,6 @@
+rootProject.name = 'spring-cloud'
+
+include('spring-cloud-eureka','spring-cloud-client')
+include 'spring-cloud-facade'
+include 'spring-cloud-serice-feign'
+

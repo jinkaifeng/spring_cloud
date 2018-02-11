@@ -1,0 +1,100 @@
+buildscript {
+    ext.kotlinVersion = '1.2.20'
+    ext.springBootVersion = '1.5.10.RELEASE'
+
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
+    }
+}
+
+allprojects {
+    group 'com.lieluobo'
+    version '1.0-SNAPSHOT'
+
+    apply plugin: 'java'
+    apply plugin: 'kotlin'
+    apply plugin: 'kotlin-spring'
+    apply plugin: 'eclipse'
+    apply plugin: 'org.springframework.boot'
+
+
+    compileKotlin {
+        kotlinOptions {
+            freeCompilerArgs = ["-Xjsr305=strict"]
+            jvmTarget = "1.8"
+        }
+    }
+    compileTestKotlin {
+        kotlinOptions {
+            freeCompilerArgs = ["-Xjsr305=strict"]
+            jvmTarget = "1.8"
+        }
+    }
+
+    // In this section you declare where to find the dependencies of your project
+    repositories {
+        mavenLocal()
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        mavenCentral()
+        jcenter()
+    }
+
+    ext.springCloudVersion = 'Edgware.SR1'
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+        }
+    }
+}
+
+subprojects {
+
+
+    sourceCompatibility = 1.8
+
+    dependencies {
+        compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
+        testCompile group: 'junit', name: 'junit', version: '4.12'
+    }
+
+}
+
+project(':spring-cloud-eureka'){
+
+    apply plugin: 'application'
+    dependencies {
+        compile('org.springframework.cloud:spring-cloud-starter-eureka-server')
+        compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
+        compile("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
+        testCompile('org.springframework.boot:spring-boot-starter-test')
+    }
+}
+project(':spring-cloud-client'){
+
+    apply plugin: 'application'
+    dependencies {
+        compile project(":spring-cloud-facade")
+        compile('org.springframework.cloud:spring-cloud-starter-eureka')
+        compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
+        compile("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
+        testCompile('org.springframework.boot:spring-boot-starter-test')
+    }
+}
+project(':spring-cloud-serice-feign'){
+
+    apply plugin: 'application'
+    dependencies {
+        compile project(":spring-cloud-facade")
+        compile('org.springframework.cloud:spring-cloud-starter-eureka')
+        compile('org.springframework.cloud:spring-cloud-starter-feign')
+        compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
+        compile("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
+        testCompile('org.springframework.boot:spring-boot-starter-test')
+    }
+}
